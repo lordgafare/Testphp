@@ -197,6 +197,7 @@
 
 <!-- HEADER: MENU + HEROE SECTION -->
 <header>
+<?= anchor('hello?name='. 'World', 'Link to Hello', ['target' => '_blank']) ?>
 
     <div class="menu">
         <ul>
