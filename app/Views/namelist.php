@@ -35,7 +35,7 @@
                             <td><?php echo $users['name']; ?></td>
                             <td><?php echo $users['email']; ?></td>
                             <td>
-                                <a href="<?php echo base_url('/editnames/' . $users['id']); ?>" class="btn btn-primary">Edit</a>
+                                <a href="<?php echo base_url('/editname/' . $users['id']); ?>" class="btn btn-primary">Edit</a>
                                 <a href="<?php echo base_url('/delete/' . $users['id']); ?>" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
