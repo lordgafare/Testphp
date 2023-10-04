@@ -23,22 +23,23 @@
         <h1>CodeIgniter CRUD</h1>
         <hr>
         <div class="mt-3">
-            <form id="add-form" action="<?= site_url('/submit-form'); ?>" method="post" name="addname">
-                <div class="form-group">
+            <form id="update-form" action="<?= site_url('/update'); ?>" method="post" name="update_user">
+              <input type="hidden" name="id" id="id" value="<?php echo $user_obj['id']; ?>">  
+            <div class="form-group">
                     <label for="name">
                         Name
                     </label>
-                    <input type="text" name="name" id="name" class="form-control">
+                    <input type="text" name="name" id="name" class="form-control" value="<?php echo $user_obj['name']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="email">
                         Email
                     </label>
-                    <input type="text" name="email" id="email" class="form-control">
+                    <input type="text" name="email" id="email" class="form-control"value="<?php echo $user_obj['email']; ?>">
                 </div>
                 <br>
                 <div class="form-group">
-                    <input type="submit" value="Add Data" class="btn btn-success">
+                    <input type="submit" value="Update Data" class="btn btn-primary mt-2">
                 </div>
             </form>
         </div>
@@ -51,8 +52,8 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
     <script>
         $(document).ready(function() {
-            if ($('#add-form').length > 0) {
-                $('#add-form').validate({
+            if ($('#update-form').length > 0) {
+                $('#update-form').validate({
                     rules: {
                         name: {
                             required: true
