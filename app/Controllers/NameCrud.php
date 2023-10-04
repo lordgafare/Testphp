@@ -39,7 +39,7 @@ class NameCrud extends BaseController
     public function singleUser($id = null)
     {
         $data['user_ob'] = $this->nameModel->where('id', $id)->first();
-        return view('editnames', $data); // Changed '/editnames' to 'editnames'
+        return view('editname', $data);
     }
 
     public function update()
