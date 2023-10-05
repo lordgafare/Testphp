@@ -15,4 +15,6 @@ $routes->post('update', 'NameCrud::update');
 $routes->get('delete/(:num)', 'NameCrud::delete/$1');
 $routes->get('register', 'Register::index');
 $routes->post('/register/save', 'Register::save');
+$routes->get('login', 'Login::index');
+$routes->post('/login/auth', 'Login::auth');
 

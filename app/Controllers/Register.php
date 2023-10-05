@@ -15,11 +15,6 @@ class Register extends BaseController
         helper(['form']);
         $data = [];
         echo view('register', $data);
-        $validation = $this->validate([
-            'user_name' => [
-                'rules' => 'required',
-            ]
-            ]);
     }
     public function save()
     {
