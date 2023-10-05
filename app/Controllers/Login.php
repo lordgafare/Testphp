@@ -17,15 +17,15 @@ class Login extends BaseController
         $model = new UserModel();
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
-        $data = $model->where('user_email', $email)->first();
+        $data = $model->where('email', $email)->first();
         if($data){
-            $pass = $data['user_password'];
+            $pass = $data['password'];
             $verify_password = password_verify($password, $pass);
             if($verify_password){
               $ses_data =[
-                'user_id' => $data['user_id'],
-                'user_name' => $data['user_email'],
-                'user_email' => $data['user_email'],               
+                'id' => $data['id'],
+                'name' => $data['username'],
+                'email' => $data['email'],               
                 'isLoggedIn' => true
               ];
               $session->set($ses_data);

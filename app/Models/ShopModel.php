@@ -4,16 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class ShopModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'users';
+    protected $table            = 'shops';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['username','email','password','created_at','updated_at'];
+    protected $allowedFields    = ['shop_title','shop_description','user_id','created_at','updated_at'];
 
     // Dates
     protected $useTimestamps = false;

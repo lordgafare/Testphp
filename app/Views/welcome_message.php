@@ -197,23 +197,7 @@
 
 <!-- HEADER: MENU + HEROE SECTION -->
 <header>
-
-    <div class="menu">
-        <ul>
-            <li class="logo">
-            <?php $session = session();?>
-            <h3><?php echo "Welocome back, " . $session->get('user_name'); ?></h3>
-            </li>
-            <li class="menu-toggle">
-                <button onclick="toggleMenu();">&#9776;</button>
-            </li>
-            <li class="menu-item hidden"><?= anchor('/', 'Home') ?></li>
-            <li class="menu-item hidden"><?= anchor('/hello?name='. 'World', 'Link to Hello', ['target' => '_blank']) ?>
-            </li>
-            <li class="menu-item hidden"><?= anchor('/namelist', 'CRUD', ['target' => '_blank']) ?></li>
-            <li class="menu-item hidden"><?= anchor('/logout', 'Logout') ?></li>
-        </ul>
-    </div>
+<?= $this->include('Layouts/Navbar'); ?>
 
     <div class="heroe">
 
@@ -268,23 +252,7 @@
 
 <!-- FOOTER: DEBUG INFO + COPYRIGHTS -->
 
-<footer>
-    <div class="environment">
-
-        <p>Page rendered in {elapsed_time} seconds</p>
-
-        <p>Environment: <?= ENVIRONMENT ?></p>
-
-    </div>
-
-    <div class="copyrights">
-
-        <p>&copy; <?= date('Y') ?> CodeIgniter Foundation. CodeIgniter is open source project released under the MIT
-            open source licence.</p>
-
-    </div>
-
-</footer>
+<?= $this->include('Layouts/Footer'); ?>
 
 <!-- SCRIPTS -->
 
