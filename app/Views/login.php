@@ -46,6 +46,8 @@
                     <div class="form-group">
                         <input type="submit" value="login" class="btn btn-success">
                     </div>
+                    <br>
+                    <?= anchor('#', 'Forgot your Password?')?>&nbsp;&nbsp;|&nbsp;&nbsp;<?= anchor('/register', 'Signup') ?>
                 </form>
             </div>
         </div>
