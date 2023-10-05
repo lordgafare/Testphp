@@ -13,4 +13,6 @@ $routes->post('submit-form', 'NameCrud::store');
 $routes->get('editname/(:num)', 'NameCrud::singleUser/$1');
 $routes->post('update', 'NameCrud::update');
 $routes->get('delete/(:num)', 'NameCrud::delete/$1');
+$routes->get('register', 'Register::index');
+$routes->post('/register/save', 'Register::save');
 
