@@ -12,7 +12,7 @@ $routes->get('/addname', 'NameCrud::create',['filter' => 'auth']);
 $routes->post('/submit-form', 'NameCrud::store',['filter' => 'auth']);
 $routes->get('/editname/(:num)', 'NameCrud::singleUser/$1',['filter' => 'auth']);
 $routes->post('/update', 'NameCrud::update',['filter' => 'auth']);
-$routes->get('/delete/(:num)', 'NameCrud::delete/$1',['filter' => 'auth']);
+$routes->get('/delete/(:num)', 'NameCrud::delete/$1', ['filter' => 'auth']);
 $routes->get('/register', 'Register::index');
 $routes->post('/register/save', 'Register::save');
 $routes->get('/login', 'Login::index');

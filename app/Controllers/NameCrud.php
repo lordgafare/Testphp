@@ -53,10 +53,14 @@ class NameCrud extends BaseController
         $this->nameModel->update($id, $data);
         return redirect()->to('/namelist');
     }
-
+    /**
+     * @param mixed $id
+     * @return mixed
+     */
     public function delete($id = null)
     {
-        $this->nameModel->where('id', $id)->delete();
+        // Find the user record by ID
+        $this->nameModel->delete($id);
         return redirect()->to('/namelist');
     }
 }

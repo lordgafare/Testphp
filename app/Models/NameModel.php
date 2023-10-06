@@ -11,12 +11,12 @@ class NameModel extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true; // เปลี่ยนเป็น true เพื่อใช้ Soft Deletes
     protected $protectFields    = true;
-    protected $allowedFields    = ['name','email'];
+    protected $allowedFields    = ['name', 'email', 'name_is_use']; // เพิ่ม 'deleted_at' ใน allowedFields
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true; // เปลี่ยนเป็น true เพื่อใช้ Timestamps
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
@@ -36,6 +36,14 @@ class NameModel extends Model
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
-    protected $beforeDelete   = [];
+    protected $beforeDelete   = ['softDelete'];
     protected $afterDelete    = [];
+    
+    // Callback function for Soft Delete
+    protected function softDelete(array $data)
+    {
+        if (array_key_exists('id', $data)) {
+            $this->where('id', $data['id'])->set(['deleted_at' => date('Y-m-d H:i:s')])->update();
+        }
+    }
 }
