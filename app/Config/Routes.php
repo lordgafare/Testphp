@@ -18,4 +18,6 @@ $routes->post('/register/save', 'Register::save');
 $routes->get('/login', 'Login::index');
 $routes->post('/login/auth', 'Login::auth');
 $routes->get('/logout', 'Login::logout', ['filter' => 'auth']);
+$routes->get('/resetpassword/(:num)', 'Login::singleUser/$1',['filter' => 'auth']);
+$routes->post('/reset', 'Login::reset',['filter' => 'auth']);
 
