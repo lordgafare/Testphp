@@ -182,7 +182,7 @@
         }
     </style>
 <footer>
-    <div class="environment">
+    <div class="environment" style="margin-top: 50vh;">
 
         <p>Page rendered in {elapsed_time} seconds</p>
 

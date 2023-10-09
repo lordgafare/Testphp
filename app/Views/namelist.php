@@ -25,7 +25,6 @@
                         <th>User Id</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Name_is_use</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -36,12 +35,9 @@
                                 <td><?php echo $users['id']; ?></td>
                                 <td><?php echo $users['name']; ?></td>
                                 <td><?php echo $users['email']; ?></td>
-                                <td><?php echo $users['name_is_use'] ? 'Active' : 'Inactive'; ?></td>
                                 <td>
                                     <a href="<?php echo base_url('/editname/' . $users['id']); ?>" class="btn btn-primary">Edit</a>
-                                    <?php if ($users['name_is_use']) : ?>
                                         <a href="<?php echo base_url('/delete/' . $users['id']); ?>" class="btn btn-danger">Delete</a>
-                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php } ?>

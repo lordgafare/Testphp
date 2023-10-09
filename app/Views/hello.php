@@ -15,47 +15,12 @@
 
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-<nav class="navbar navbar-dark bg-dark navbar-expand-sm">
-  <a class="navbar-brand" href="#">
-    <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/logo_white.png" width="30" height="30" alt="logo">
-    BootstrapBay
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbar-list-4">
-    <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Dashboard</a>
-          <a class="dropdown-item" href="#">Edit Profile</a>
-          <a class="dropdown-item" href="#">Log Out</a>
-        </div>
-      </li>   
-    </ul>
-  </div>
-</nav>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+        <?= $this->include('Layouts/Navbar'); ?>
+
 <h1>Hello</h1>
+
 <?= anchor('/', 'Link to Welcome Message', ['target' => '_blank']) ?>
-<div class="menu">
-            <ul>
-                <li class="logo">
-                    <?php $session = session(); ?>
-                    <h3><?php echo "Welcome back, " . $session->get('name'); ?></h3>
-                </li>
-                <li class="menu-toggle">
-                    <button onclick="toggleMenu();">&#9776;</button>
-                </li>
-                <li class="menu-item hidden"><?= anchor('/', 'Home') ?></li>
-                <li class="menu-item hidden"><?= anchor('/hello?name=' . 'World', 'Link to Hello', ['target' => '_blank']) ?>
-                </li>
-                <li class="menu-item hidden"><?= anchor('/namelist', 'CRUD', ['target' => '_blank']) ?></li>
-                <li class="menu-item hidden"><?= anchor('/logout', 'Logout') ?></li>
-            </ul>
-        </div>
-        
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>  
+<?= $this->include('Layouts/Footer'); ?>
