@@ -52,14 +52,15 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <?php $session = session(); ?>
-                    <img src="<?= base_url('uploads/' . $session->get('user_image_path')) ?>" width="40" height="40" class="rounded-circle">
+                    <?php $session = session(); 
+                    $userUpdate = session('userUpdate');?>
+    
+                        <img src="<?= base_url('uploads/' . $session->get('user_image_path')) ?>" width="40" height="40" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu left" aria-labelledby="navbarDropdownMenuLink">
 
                     <p style="text-align: center;"><?= $session->get('name'); ?></p>
                     <img src="<?= base_url('uploads/' . $session->get('user_image_path')) ?>" width="100px" class="rounded-circle mx-auto d-block">
-
                     <hr>
                     <a class="dropdown-item" href="<?= base_url("/editprofile/{$session->get('id')}") ?>">Edit Profile</a>
                     <?php $userID = strval($session->get('id')); ?>

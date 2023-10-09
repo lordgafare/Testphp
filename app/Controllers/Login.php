@@ -116,7 +116,7 @@ class Login extends BaseController
     {
         $userModel = new UserModel();
         $user = $userModel->find($id);
-
+        $session = session();
         if (!$user) {
             return redirect()->to('/welcome_message')->with('error', 'ไม่พบข้อมูลผู้ใช้');
         }
@@ -141,7 +141,16 @@ class Login extends BaseController
                 'email' => $this->request->getPost('email'),
                 'image_path' => $imageName,
             ]);
-            cache()->clean();
+            $userUpdate = $userModel->find($id);
+            $ses_data = [
+                'id' => $userUpdate['id'],
+                'name' => $userUpdate['username'],
+                'email' => $userUpdate['email'],
+                'isLoggedIn' => true,
+                'user_image_path' => $userUpdate['image_path']
+            ];
+            $session->set($ses_data);
+            // dd($userUpdate);
             return redirect()->to("/editprofile/{$id}")->with('success', 'อัปเดตข้อมูลผู้ใช้เรียบร้อย');
         } else {
             return redirect()->to("/editprofile/{$id}")->with('error', 'ไม่สามารถอัปโหลดรูปภาพได้');
