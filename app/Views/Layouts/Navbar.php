@@ -52,18 +52,20 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+                    <?php $session = session(); ?>
+                    <img src="<?= base_url('uploads/' . $session->get('user_image_path')) ?>" width="40" height="40" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu left" aria-labelledby="navbarDropdownMenuLink">
-                    <?php $session = session(); ?>
+
                     <p style="text-align: center;"><?= $session->get('name'); ?></p>
+                    <img src="<?= base_url('uploads/' . $session->get('user_image_path')) ?>" width="100px" class="rounded-circle mx-auto d-block">
+
                     <hr>
                     <a class="dropdown-item" href="<?= base_url("/editprofile/{$session->get('id')}") ?>">Edit Profile</a>
                     <?php $userID = strval($session->get('id')); ?>
                     <a class="dropdown-item" href="<?php echo base_url('/resetpassword/' . $userID); ?>">Reset Password</a>
                     <a class="dropdown-item" href="<?= site_url('logout') ?>">Logout</a>
                 </div>
-            </li>
         </ul>
     </div>
 </nav>

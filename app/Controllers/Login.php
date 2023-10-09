@@ -27,7 +27,8 @@ class Login extends BaseController
                     'id' => $data['id'],
                     'name' => $data['username'],
                     'email' => $data['email'],
-                    'isLoggedIn' => true
+                    'isLoggedIn' => true,
+                    'user_image_path' => $data['image_path']
                 ];
                 $session->set($ses_data);
                 return redirect()->to('/');
@@ -108,7 +109,7 @@ class Login extends BaseController
         if (!$user) {
             return redirect()->to('/welcome_message')->with('error', 'ไม่พบข้อมูลผู้ใช้');
         }
-
+        $imageName = $user['image_path'];
         return view('/editprofile', ['user' => $user]);
     }
     public function update($id)
@@ -119,7 +120,6 @@ class Login extends BaseController
         if (!$user) {
             return redirect()->to('/welcome_message')->with('error', 'ไม่พบข้อมูลผู้ใช้');
         }
-
         $rules = [
             'username' => 'required|min_length[2]|max_length[255]',
             'email' => 'required|valid_email',
@@ -141,10 +141,11 @@ class Login extends BaseController
                 'email' => $this->request->getPost('email'),
                 'image_path' => $imageName,
             ]);
-
+            cache()->clean();
             return redirect()->to("/editprofile/{$id}")->with('success', 'อัปเดตข้อมูลผู้ใช้เรียบร้อย');
         } else {
             return redirect()->to("/editprofile/{$id}")->with('error', 'ไม่สามารถอัปโหลดรูปภาพได้');
         }
     }
+    
 }
