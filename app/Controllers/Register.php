@@ -33,6 +33,7 @@ class Register extends BaseController
                 'username' => $this->request->getVar('username'),
                 'email' => $this->request->getVar('email'),
                 'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+                'image_path' => 'avatar.jpg',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ];

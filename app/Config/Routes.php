@@ -20,4 +20,5 @@ $routes->post('/login/auth', 'Login::auth');
 $routes->get('/logout', 'Login::logout', ['filter' => 'auth']);
 $routes->get('/resetpassword/(:num)', 'Login::singleUser/$1',['filter' => 'auth']);
 $routes->post('/reset', 'Login::reset',['filter' => 'auth']);
-
+$routes->get('/editprofile/(:num)', 'Login::edit/$1',['filter' => 'auth']);
+$routes->post('/editprofile/update/(:num)', 'Login::update/$1',['filter' => 'auth']);

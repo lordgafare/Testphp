@@ -58,7 +58,7 @@
                     <?php $session = session(); ?>
                     <p style="text-align: center;"><?= $session->get('name'); ?></p>
                     <hr>
-                    <a class="dropdown-item" href="#">Edit Profiled</a>
+                    <a class="dropdown-item" href="<?= base_url("/editprofile/{$session->get('id')}") ?>">Edit Profile</a>
                     <?php $userID = strval($session->get('id')); ?>
                     <a class="dropdown-item" href="<?php echo base_url('/resetpassword/' . $userID); ?>">Reset Password</a>
                     <a class="dropdown-item" href="<?= site_url('logout') ?>">Logout</a>

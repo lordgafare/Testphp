@@ -100,4 +100,51 @@ class Login extends BaseController
             return redirect()->to('/resetpassword/' . $userID);
         }
     }
+    public function edit($id)
+    {
+        $userModel = new UserModel();
+        $user = $userModel->find($id);
+
+        if (!$user) {
+            return redirect()->to('/welcome_message')->with('error', 'ไม่พบข้อมูลผู้ใช้');
+        }
+
+        return view('/editprofile', ['user' => $user]);
+    }
+    public function update($id)
+    {
+        $userModel = new UserModel();
+        $user = $userModel->find($id);
+
+        if (!$user) {
+            return redirect()->to('/welcome_message')->with('error', 'ไม่พบข้อมูลผู้ใช้');
+        }
+
+        $rules = [
+            'username' => 'required|min_length[2]|max_length[255]',
+            'email' => 'required|valid_email',
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('error', implode('<br>', $this->validator->getErrors()));
+        }
+
+        $file = $this->request->getFile('image_path');
+
+        if ($file->isValid() && !$file->hasMoved()) {
+            $imageName = $file->getRandomName();
+            $file->move('uploads/', $imageName);
+
+            // อัปเดตข้อมูลผู้ใช้
+            $userModel->update($id, [
+                'username' => $this->request->getPost('username'),
+                'email' => $this->request->getPost('email'),
+                'image_path' => $imageName,
+            ]);
+
+            return redirect()->to("/editprofile/{$id}")->with('success', 'อัปเดตข้อมูลผู้ใช้เรียบร้อย');
+        } else {
+            return redirect()->to("/editprofile/{$id}")->with('error', 'ไม่สามารถอัปโหลดรูปภาพได้');
+        }
+    }
 }

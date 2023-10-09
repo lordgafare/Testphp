@@ -29,6 +29,11 @@ class CreateUserTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
+            'image_path' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
