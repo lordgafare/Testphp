@@ -29,17 +29,17 @@
                     <label for="password">
                         Password
                     </label>
-                    <input type="text" name="password" id="password" placeholder="Enter new password" class="form-control">
+                    <input type="password" name="password" id="password" placeholder="Enter new password" class="form-control">
                 </div>
-                <br>
-                <div class="form-group">
-                    <input type="submit" value="Reset Password " class="btn btn-success">
-                </div>
+
                 <label for="confirm_password">
                     Confirm Password
                 </label>
                 <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm new password" class="form-control">
-
+                <br>
+                <div class="form-group">
+                    <input type="submit" value="Reset Password " class="btn btn-success">
+                </div>
             </form>
 
 

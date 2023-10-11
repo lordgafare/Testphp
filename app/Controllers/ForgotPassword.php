@@ -28,11 +28,11 @@ class ForgotPassword extends BaseController
         try {
             //Server settings
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;  // Enable verbose debug output
-            $mail->isSMTP();  // Send using SMTP
-            $mail->Host       = 'smtp.example.com';  // Set the SMTP server to send through
+            $mail->isSMTP();  
+            $mail->Host       = 'smtp.gmail.com';  // Set the SMTP server to send through
             $mail->SMTPAuth   = true;  // Enable SMTP authentication
-            $mail->Username   = 'your_email@example.com';  // SMTP username
-            $mail->Password   = 'your_password';  // SMTP password
+            $mail->Username   = 'lordgafarfe@gmail.com';  // SMTP username
+            $mail->Password   = 'vqkjkhpwyybfixxt';  // SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
             $mail->Port       = 587;  // TCP port to connect to
 
@@ -66,9 +66,9 @@ class ForgotPassword extends BaseController
             $model->update($user['id'], ['reset_token' => $token]);
     
             // Send reset password email
-            $reset_link = site_url("reset_password/index/$token");
+            $reset_link = site_url("reset_password/$token");
     
-            $this->sendEmailWithPHPMailer($email, 'Reset Your Password', "Click the following link to reset your password: $reset_link");
+            $this->sendEmailWithPHPMailer($email, 'Reset Your Password', "Click the following link to reset your password:, $reset_link");
     
             return redirect()->to('/forgot_password')->with('success', 'Reset link sent!');
         } else {
@@ -83,7 +83,11 @@ class ForgotPassword extends BaseController
         $token = $this->request->getPost('token');
         $password = $this->request->getPost('password');
         $confirm_password = $this->request->getPost('confirm_password');
-
+        
+        if (!is_string($password) || !is_string($confirm_password) || is_null($password) || is_null($confirm_password)) {
+            return redirect()->to('/reset_password')->with('error', 'Invalid password data!');
+        }
+        
         // Check if passwords match
         if ($password !== $confirm_password) {
             return redirect()->to('/reset_password')->with('error', 'Passwords do not match!');
