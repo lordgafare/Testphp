@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 use App\Models\UserModel;
 use App\Controllers\BaseController;
 
@@ -18,40 +21,61 @@ class ForgotPassword extends BaseController
         return view('reset_password', ['token' => $token]); // ควรใช้ชื่อไฟล์ 'reset_password' แต่ในที่นี้คุณตั้งชื่อแปลก ๆ
     }
 
-
-    public function send_reset_link()
+    public function sendEmailWithPHPMailer($email, $subject, $message)
     {
-        $email = $this->request->getPost('email');
+        $mail = new PHPMailer(true);
 
+        try {
+            //Server settings
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;  // Enable verbose debug output
+            $mail->isSMTP();  // Send using SMTP
+            $mail->Host       = 'smtp.example.com';  // Set the SMTP server to send through
+            $mail->SMTPAuth   = true;  // Enable SMTP authentication
+            $mail->Username   = 'your_email@example.com';  // SMTP username
+            $mail->Password   = 'your_password';  // SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
+            $mail->Port       = 587;  // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom('gun_gun2541@hotmail.com', 'LordGaFare');
+            $mail->addAddress($email);  // Add a recipient
+
+            // Content
+            $mail->isHTML(true);  // Set email format to HTML
+            $mail->Subject = $subject;
+            $mail->Body    = $message;
+
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
+
+    public function send_reset_link() {
+        $email = $this->request->getPost('email');
+    
         $model = new UserModel();
         $user = $model->where('email', $email)->first();
-
+    
         if ($user) {
             // Generate a token
             $token = bin2hex(random_bytes(20));
-
+    
             // Save token to the user's record
             $model->update($user['id'], ['reset_token' => $token]);
-
+    
             // Send reset password email
             $reset_link = site_url("reset_password/index/$token");
-
-            $emailService = \Config\Services::email();
-            $emailService->setTo($email);  // ที่อยู่อีเมล์ของผู้รับ
-            $emailService->setFrom('gun_gun2541@hotmail.com', 'LordGaFare');  // ตั้งค่าที่อยู่อีเมล์ผู้ส่ง และชื่อผู้ส่ง
-            $emailService->setSubject('Reset Your Password');
-            $emailService->setMessage("Click the following link to reset your password: $reset_link");
-
-            if ($emailService->send()) {
-                return redirect()->to('/forgot_password')->with('success', 'Reset link sent!');
-            } else {
-                echo $emailService->printDebugger();
-                // return redirect()->to('/forgot_password')->with('error', 'Failed to send email!');
-            }/*  */
+    
+            $this->sendEmailWithPHPMailer($email, 'Reset Your Password', "Click the following link to reset your password: $reset_link");
+    
+            return redirect()->to('/forgot_password')->with('success', 'Reset link sent!');
         } else {
             return redirect()->to('/forgot_password')->with('error', 'Email not found!');
         }
     }
+
 
 
     public function reset()
