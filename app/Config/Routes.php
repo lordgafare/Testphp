@@ -22,3 +22,7 @@ $routes->get('/resetpassword/(:num)', 'Login::singleUser/$1',['filter' => 'auth'
 $routes->post('/reset', 'Login::reset',['filter' => 'auth']);
 $routes->get('/editprofile/(:num)', 'Login::edit/$1',['filter' => 'auth']);
 $routes->post('/editprofile/update/(:num)', 'Login::update/$1',['filter' => 'auth']);
+$routes->get('/forgot_password', 'ForgotPassword::showForgotForm');
+$routes->post('/forgot_password/send_reset_link', 'ForgotPassword::send_reset_link'); 
+$routes->get('/reset_password/(:any)', 'ForgotPassword::showResetForm/$1'); 
+$routes->post('/reset_password/reset', 'ForgotPassword::reset'); 
