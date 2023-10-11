@@ -67,8 +67,8 @@ class ForgotPassword extends BaseController
     
             // Send reset password email
             $reset_link = site_url("reset_password/$token");
-    
-            $this->sendEmailWithPHPMailer($email, 'Reset Your Password', "Click the following link to reset your password:, $reset_link");
+            $message = "Click the following link to reset your password: <a href='{$reset_link}'>Reset Password</a>";
+            $this->sendEmailWithPHPMailer($email, 'Reset Your Password', $message);
     
             return redirect()->to('/forgot_password')->with('success', 'Reset link sent!');
         } else {
