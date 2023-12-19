@@ -12,13 +12,13 @@ class ForgotPassword extends BaseController
 {
     public function showForgotForm()
     {
-        return view('forgot_password'); // ควรใช้ชื่อไฟล์ 'forgot_password' แต่ในที่นี้คุณตั้งชื่อแปลก ๆ
+        return view('forgot_password'); 
     }
 
     // แสดงฟอร์มรีเซ็ตรหัสผ่าน
     public function showResetForm($token = null)
     {
-        return view('reset_password', ['token' => $token]); // ควรใช้ชื่อไฟล์ 'reset_password' แต่ในที่นี้คุณตั้งชื่อแปลก ๆ
+        return view('reset_password', ['token' => $token]); 
     }
 
     public function sendEmailWithPHPMailer($email, $subject, $message)
