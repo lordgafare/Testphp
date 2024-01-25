@@ -26,3 +26,6 @@ $routes->get('/forgot_password', 'ForgotPassword::showForgotForm');
 $routes->post('/forgot_password/send_reset_link', 'ForgotPassword::send_reset_link'); 
 $routes->get('/reset_password/(:any)', 'ForgotPassword::showResetForm/$1'); 
 $routes->post('/reset_password/reset', 'ForgotPassword::reset'); 
+$routes->post('/pattern/generate', 'HelloController::generate');
+$routes->get('/doc', 'DocumentNumberController::index');
+$routes->post('/doc', 'DocumentNumberController::index');

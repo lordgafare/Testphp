@@ -55,8 +55,6 @@ class NameCrud extends BaseController
     }
     public function delete($id = null)
     {
-
-        // Find the user record by ID
         $data['user'] = $this->nameModel->where('id', $id)->delete($id);
         return $this->response->redirect(site_url('/namelist'));
     }
